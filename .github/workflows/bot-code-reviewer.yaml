@@ -10,7 +10,7 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4
-      - uses: sshnaidm/gpt-code-review-action@v2.0
+      - uses: sshnaidm/gpt-code-review-action@v3.0
         with:
           openai-key: ${{ secrets.OPENAI_TOKEN }}
           model: 'gpt-4o-mini'
