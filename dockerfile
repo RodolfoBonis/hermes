@@ -1,4 +1,4 @@
-FROM golang:1.22.1-alpine as build-env
+FROM golang:1.23.0-alpine as build-env
 
 RUN apk add --no-cache git ca-certificates
 
@@ -22,7 +22,7 @@ ADD . /go/src/github.com/RodolfoBonis/hermes/
 COPY . ./
 
 
-FROM golang:1.22.1 as builder
+FROM golang:1.23.0 as builder
 
 ARG GITHUB_TOKEN
 ARG VERSION=unknown
