@@ -14,8 +14,8 @@ metadata:
     - backstage:techdocs
     - hermes
 spec:
-  type: service
+  type: openapi
   owner: default/rbtech
   lifecycle: production
   definition:
-      : http://hermes.rodolfodebonis.com.br/v1/docs/doc.json
+      $text: http://hermes.rodolfodebonis.com.br/v1/docs/doc.json
