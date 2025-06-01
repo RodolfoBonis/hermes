@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
   name: hermes
-  description: Meet Hermes, your notification messenger of the gods—on Kafka & RabbitMQ (no winged sandals required). From SendGrid emails and WhatsApp via WhatsMeow to FCM push & Twilio SMS, Hermes guarantees scalable, reliable delivery with DLQ magic for failures. 📨⚡ #Hermes #DevOps
+  description: "Meet Hermes, your notification messenger of the gods—on Kafka & RabbitMQ (no winged sandals required). From SendGrid emails and WhatsApp via WhatsMeow to FCM push & Twilio SMS, Hermes guarantees scalable, reliable delivery with DLQ magic for failures. 📨⚡ #Hermes #DevOps"
   annotations:
     backstage.io/techdocs-ref: dir:.
     github.com/project-slug: RodolfoBonis/hermes
