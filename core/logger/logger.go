@@ -2,10 +2,11 @@ package logger
 
 import (
 	_ "fmt"
+	"time"
+
 	"github.com/RodolfoBonis/hermes/core/config"
 	"github.com/RodolfoBonis/hermes/core/entities"
 	"go.uber.org/zap"
-	"time"
 )
 
 var (
@@ -35,10 +36,8 @@ func InitLogger() {
 		return
 	}
 
-	newRelicConfig := config.NewRelicConfig()
-
 	Log = &CustomLogger{
-		logger: config.ZapConfig(newRelicConfig),
+		logger: config.ZapConfig(),
 	}
 }
 
