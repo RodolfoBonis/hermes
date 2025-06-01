@@ -2,14 +2,18 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
+	"os"
+	"strings"
+
 	"github.com/RodolfoBonis/hermes/core/config"
+	"github.com/RodolfoBonis/hermes/core/entities"
 	"github.com/RodolfoBonis/hermes/core/errors"
 	"github.com/RodolfoBonis/hermes/core/logger"
 	"github.com/RodolfoBonis/hermes/core/middlewares"
 	"github.com/RodolfoBonis/hermes/core/services"
 	"github.com/RodolfoBonis/hermes/docs"
 	"github.com/RodolfoBonis/hermes/routes"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -25,11 +29,8 @@ func main() {
 
 	config.SentryConfig()
 
-	newRelicConfig := config.NewRelicConfig()
+	_middleware := middlewares.NewMonitoringMiddleware()
 
-	_middleware := middlewares.NewMonitoringMiddleware(newRelicConfig)
-
-	app.Use(_middleware.NewRelicMiddleware())
 	app.Use(_middleware.SentryMiddleware())
 	app.Use(_middleware.LogMiddleware)
 
@@ -75,8 +76,29 @@ func init() {
 
 	docs.SwaggerInfo.Title = "hermes"
 	docs.SwaggerInfo.Description = "Meet Hermes, your notification messenger of the gods—on Kafka & RabbitMQ (no winged sandals required). From SendGrid emails and WhatsApp via WhatsMeow to FCM push & Twilio SMS, Hermes guarantees scalable, reliable delivery with DLQ magic for failures. 📨⚡ #Hermes #DevOps"
-	docs.SwaggerInfo.Version = "0.0.1"
-	docs.SwaggerInfo.Host = fmt.Sprintf("localhost:%s", config.EnvPort())
+	versionFileName := "version.txt"
+	if config.EnvironmentConfig() == entities.Environment.Production {
+		versionFileName = "/version.txt"
+	}
+
+	version := "unknown"
+	if content, err := os.ReadFile(versionFileName); err == nil {
+		version = strings.TrimSpace(string(content))
+	}
+	host := "localhost"
+
+	if config.EnvironmentConfig() == entities.Environment.Production {
+		host = "hermes.rodolfodebonis.com.br"
+	}
+
+	docs.SwaggerInfo.Host = host
 	docs.SwaggerInfo.BasePath = "/v1"
-	docs.SwaggerInfo.Schemes = []string{"http", "https"}
+	docs.SwaggerInfo.Version = version
+	scheme := "http"
+
+	if config.EnvironmentConfig() == entities.Environment.Production {
+		scheme = "https"
+	}
+
+	docs.SwaggerInfo.Schemes = []string{scheme}
 }
