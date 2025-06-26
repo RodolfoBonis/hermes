@@ -61,7 +61,7 @@ func init() {
 	services.InitializeOAuthServer()
 
 	// Use this for open connection with DataBase
-	//appError := services.OpenConnection()
+	// appError := services.OpenConnection()
 	//
 	//if appError != nil {
 	//	logger.Log.Error(appError.Message, appError.ToMap())
