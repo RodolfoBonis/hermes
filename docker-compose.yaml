@@ -11,7 +11,7 @@ services:
     env_file:
       - .env
     environment:
-      - ENV=$ENV}
+      - ENV=${ENV}
       - PORT=${PORT}
       - CLIENT_ID=${CLIENT_ID}
       - CLIENT_SECRET=${CLIENT_SECRET}
