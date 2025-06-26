@@ -1,12 +1,12 @@
 package routes
 
 import (
+	"github.com/RodolfoBonis/hermes/core/health"
+	"github.com/RodolfoBonis/hermes/features/auth"
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"github.com/RodolfoBonis/hermes/core/health"
-	"github.com/RodolfoBonis/hermes/features/auth"
 )
 
 func InitializeRoutes(router *gin.Engine) {
