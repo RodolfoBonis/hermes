@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  boilerplate:
+  hermes:
     build:
       context: .
       dockerfile: dockerfile
@@ -11,7 +11,7 @@ services:
     env_file:
       - .env
     environment:
-      - BOILERPLATE_ENV=${BOILERPLATE_ENV}
+      - ENV=$ENV}
       - PORT=${PORT}
       - CLIENT_ID=${CLIENT_ID}
       - CLIENT_SECRET=${CLIENT_SECRET}
